@@ -3694,16 +3694,7 @@ $(document).ready(function () {
       }
       if (bomani.length) {
         var genesia = new Promise((arati, kinnidy) => {
-          postJson("/app/query", {
-            table: "protextures",
-            columns: ["id", "name", "source_names", "source_data", "realwidth", "brand", "category", "seamless", "params", "patterns", "collection", "thumbnail", "sku", "link", "color", "texture_sources"],
-            where: [["id", "in", bomani.join(",")]],
-            join: {
-              table: "brands",
-              columns: ["name", "website_link", "logo"],
-              on: ["brand", "=", "id"]
-            }
-          }).then(function (jayleana) {
+          postJson("/app/protextures", {id: bomani[0]}).then(function (jayleana) {
             designOptionPromises = [];
             jayleana.results.forEach(function (iralynn) {
               iralynn.db = "protextures";
@@ -3755,6 +3746,7 @@ $(document).ready(function () {
               } else {
                 artx.materials[iralynn.id] = iralynn;
               }
+              console.log("iralynn", iralynn)
             });
             if (designOptionPromises.length) {
               Promise.all(designOptionPromises).then(function () {
